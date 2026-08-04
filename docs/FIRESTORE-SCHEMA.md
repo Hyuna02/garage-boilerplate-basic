@@ -46,4 +46,22 @@ This enables **lazy migration** — when a document is read, check `_schemaVersi
 
 ---
 
+## `notes` collection
+
+**Path:** `/notes/{noteId}`
+**Access:** Owner-only (user can read/create/update their own notes)
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `uid` | `string` | Yes | Owner's Firebase Auth UID — used by security rules |
+| `title` | `string` | Yes | Note title (max 200 chars) |
+| `body` | `string` | Yes | Note content (max 10,000 chars) |
+| `createdAt` | `Timestamp` | Yes | When the document was created |
+| `updatedAt` | `Timestamp` | Yes | When the document was last updated |
+| `_schemaVersion` | `1` | Yes | Schema version for lazy migration |
+
+**Creation:** Created via `createNote()` Server Action.
+**Deletion:** Hard-delete is disabled in security rules. Use `deletedAt` field for soft-delete.
+
+---
 <!-- Add new collection schemas below using the /firebase-collection skill -->
