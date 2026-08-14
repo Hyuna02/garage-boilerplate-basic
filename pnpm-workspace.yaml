@@ -14,6 +14,12 @@ overrides:
   postcss: '^8.5.18'
   # next also bundles an old sharp (image optimization) — force the patched line.
   sharp: '^0.35.0'
+  # eslint (via @typescript-eslint) pulls in a js-yaml with a quadratic CPU DoS
+  # in !!omap resolution (CVE-2026-59870, GHSA-5p4m-2wfm-xmqj).
+  js-yaml: '^4.3.1'
+  # postcss pulls in a nanoid whose custom generators can loop indefinitely
+  # when size is 0 (GHSA-2v37-7h3g-55p8).
+  nanoid: '^3.3.18'
 
 allowBuilds:
   '@firebase/util': true
